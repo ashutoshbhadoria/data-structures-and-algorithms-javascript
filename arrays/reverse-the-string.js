@@ -1,11 +1,15 @@
 function reverse(string) {
-  stringArray = string.split('');
-  let reverseString = '';
-  for(let i = stringArray.length - 1; i >= 0; i--) {
-    reverseString += stringArray[i];
+  if (!string) {
+    throw { error: 'Invalid argument' };
   }
 
-  return reverseString;
+  const backwards = [];
+  for (let i = string.length - 1; i >= 0; i--) {
+    backwards.push(string[i]);
+  }
+
+  return backwards.join('');
 }
 
-console.log(reverse('Hello!'));
+// Test
+console.log(reverse('Hello there! General Kenobi'));
