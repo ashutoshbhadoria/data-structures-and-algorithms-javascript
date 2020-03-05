@@ -1,14 +1,14 @@
-// Represents a node of a singly linked-list.
+// Represents a node of a doubly linked-list.
 class Node {
-  // Create a node with a provided value with the next pointer set to null.
   constructor(value) {
     this.value = value;
+    this.previous = null;
     this.next = null;
   }
 }
 
-// Represnts the data structure of a singly linked-list of nodes.
-class SinglyLinkedList {
+// Represnts the data structure of a doubly linked-list of nodes.
+class DoublyLinkedList {
   // Creates a linked list with one node with a provided value.
   // The head and the tail pointer pointing to that node.
   constructor(value) {
@@ -34,6 +34,7 @@ class SinglyLinkedList {
   // O(1) operation as we are keeping track of the tail pointer.
   append(value) {
     const newNode = new Node(value);
+    newNode.previous = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -44,6 +45,7 @@ class SinglyLinkedList {
   prepend(value) {
     const newNode = new Node(value);
     newNode.next = this.head;
+    this.head.previous = newNode;
     this.head = newNode;
     this.length++;
   }
@@ -74,9 +76,11 @@ class SinglyLinkedList {
 
     const newNode = new Node(value);
     const leader = this._traverseToIndex(index - 1);
-    const holdingPointer = leader.next;
+    const follower = leader.next;
     leader.next = newNode;
-    newNode.next = holdingPointer;
+    newNode.previous = leader;
+    newNode.next = follower;
+    follower.previous = newNode;
     this.length++;
   }
 
@@ -85,24 +89,34 @@ class SinglyLinkedList {
   remove(index) {
     if (index === 0) {
       this.head = this.head.next;
+      this.head.previous = null;
+      this.length--;
+      return;
+    }
+
+    if (index === this.length - 1) {
+      this.tail = this.tail.previous;
+      this.tail.next = null;
+      this.length--;
       return;
     }
 
     const leader = this._traverseToIndex(index - 1);
     const unwantedNode = leader.next;
-    leader.next = unwantedNode.next;
+    const follower = unwantedNode.next;
+    leader.next = follower;
+    follower.previous = leader;
     this.length--;
   }
 }
 
 // test
-const myLinkedList = new SinglyLinkedList(10);
+const myLinkedList = new DoublyLinkedList(10);
 myLinkedList.printLinkedList();
 myLinkedList.append(20);
 myLinkedList.append(30);
 myLinkedList.prepend(1);
 myLinkedList.printLinkedList();
-console.log(JSON.stringify(myLinkedList));
 myLinkedList.insert(2, 99);
 myLinkedList.insert(2, 69);
 myLinkedList.insert(0, 420);
