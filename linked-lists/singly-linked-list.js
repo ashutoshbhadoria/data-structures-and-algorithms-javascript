@@ -93,6 +93,27 @@ class SinglyLinkedList {
     leader.next = unwantedNode.next;
     this.length--;
   }
+
+  // Reverse the nodes of the linked-list (flip the diection of pointers).
+  reverse() {
+    if (!this.head.next) {
+      return this.head;
+    }
+
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+
+    while(second) {
+      let temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+
+    this.head.next = null;
+    this.head = first;
+  }
 }
 
 // test
@@ -111,4 +132,6 @@ myLinkedList.printLinkedList();
 myLinkedList.remove(0);
 myLinkedList.remove(2);
 myLinkedList.remove(5);
+myLinkedList.printLinkedList();
+myLinkedList.reverse();
 myLinkedList.printLinkedList();
