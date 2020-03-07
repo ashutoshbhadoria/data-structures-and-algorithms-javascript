@@ -1,6 +1,6 @@
 // Represents a node of a stack.
 class Node {
-  constructor (value) {
+  constructor(value) {
     this.value = value;
     this.next = null;
   }
@@ -22,8 +22,8 @@ class Stack {
   // Add a node with the provided value to the top of the stack.
   push(value) {
     const newNode = new Node(value);
-    
-    if(!this.bottom) {
+
+    if (!this.bottom) {
       this.bottom = newNode;
     }
     newNode.next = this.top;
@@ -36,7 +36,7 @@ class Stack {
     if (!this.top) {
       return null;
     }
-    if(!this.top.next) {
+    if (!this.top.next) {
       this.bottom = null;
     }
     const removedNode = this.top;
@@ -44,7 +44,7 @@ class Stack {
     this.length--;
     return removedNode;
   }
-} 
+}
 
 // test
 const myStack = new Stack();

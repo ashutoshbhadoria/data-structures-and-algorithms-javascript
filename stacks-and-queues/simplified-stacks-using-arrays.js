@@ -1,6 +1,6 @@
 // This implementation is not consistent with the stack implemented using linked-list API.
 
-class Stack{
+class Stack {
   constructor() {
     this.stackData = [];
   }

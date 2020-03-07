@@ -26,12 +26,12 @@ class Stack {
 
   // Removes a node from the top of a stack and returns it.
   pop(value) {
-    if(!this.length ) {
+    if (!this.length) {
       return null;
     }
     const deletedValue = this.stackData.pop();
     this.length--;
-    if(!this.length) {
+    if (!this.length) {
       this.bottom = null;
       this.top = null;
     }
@@ -40,7 +40,6 @@ class Stack {
 }
 
 // test
-
 
 const myStack = new Stack();
 console.log(myStack.peek());
