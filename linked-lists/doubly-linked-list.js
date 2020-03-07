@@ -7,7 +7,7 @@ class Node {
   }
 }
 
-// Represnts the data structure of a doubly linked-list of nodes.
+// Represents the data structure of a doubly linked-list of nodes.
 class DoublyLinkedList {
   // Creates a linked list with one node with a provided value.
   // The head and the tail pointer pointing to that node.
