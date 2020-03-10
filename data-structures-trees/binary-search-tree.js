@@ -136,6 +136,14 @@ class BinarySearchTree {
   }
 }
 
+// Used just to demonstrate recursion.
+function traverse(node) {
+  const tree = new Node(node.value);
+  tree.left = node.left === null ? null : traverse(node.left);
+  tree.right = node.right === null ? null : traverse(node.right);
+  return tree;
+}
+
 // Test
 const myBinarySearchTree = new BinarySearchTree();
 myBinarySearchTree.insert(9);
@@ -145,8 +153,9 @@ myBinarySearchTree.insert(20);
 myBinarySearchTree.insert(170);
 myBinarySearchTree.insert(15);
 myBinarySearchTree.insert(1);
-myBinarySearchTree.remove(170)
+myBinarySearchTree.remove(170);
 console.log(JSON.stringify(myBinarySearchTree));
+console.log(JSON.stringify(traverse(myBinarySearchTree.root)));
 console.log(myBinarySearchTree.lookup(170));
 console.log(myBinarySearchTree.lookup(160));
 console.log(myBinarySearchTree.lookup(6));
