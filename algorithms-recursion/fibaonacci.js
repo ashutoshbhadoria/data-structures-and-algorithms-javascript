@@ -1,17 +1,39 @@
-// Retuen the index of the provided number in the fibonacci sequence.
+// Return the number in the fibonacci sequence at the index provided.
+// Fibonacci sequence -> 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
 
-function fibonacci(number) {
-  const fibonacci = [0, 1, 1];
-
-  if (number == 0) {
-    return 0;
-  } else if (number == 1) {
-    return [1, 2];
+// O(n)
+function fibonacciIterative(index) {
+  if (index <= 1) {
+    return index;
   }
-
-  let index = 3;
-  while(fibonacci[index - 1] < number) {
-    const myNumber = fibonacci[index - 1] + fibonacci[index - 2];
-    
+  let secondPrevious = 0;
+  let previous = 1;
+  let i = 2;
+  let fibNumber;
+  while (i <= index) {
+    fibNumber = secondPrevious + previous;
+    secondPrevious = previous;
+    previous = fibNumber;
+    i++;
   }
+  return fibNumber;
 }
+
+// o(2^n)
+function fibonacciRecursive(index) {
+  if (index <= 1) {
+    return index;
+  }
+  return fibonacciRecursive(index - 1) + fibonacciRecursive(index - 2);
+}
+
+// test
+console.log(fibonacciIterative(6));
+console.log(fibonacciIterative(8));
+console.log(fibonacciIterative(0));
+console.log(fibonacciIterative(1));
+
+console.log(fibonacciRecursive(6));
+console.log(fibonacciRecursive(8));
+console.log(fibonacciRecursive(0));
+console.log(fibonacciRecursive(1));
